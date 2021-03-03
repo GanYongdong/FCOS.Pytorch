@@ -1,4 +1,3 @@
-Pretrained_weights
-checkPointsTmp
-*\__pycache__
+*.pth
+*.pyc
 .vscode
