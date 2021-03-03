@@ -15,26 +15,12 @@ from torchvision import transforms
 class VOCDataset(torch.utils.data.Dataset):
     CLASSES_NAME = (
         "__background__ ",
-        "aeroplane",
-        "bicycle",
-        "bird",
-        "boat",
-        "bottle",
-        "bus",
-        "car",
-        "cat",
-        "chair",
-        "cow",
-        "diningtable",
-        "dog",
-        "horse",
-        "motorbike",
-        "person",
-        "pottedplant",
-        "sheep",
-        "sofa",
-        "train",
-        "tvmonitor",
+        "homofilt",
+        "medifilt",
+        "addnoise",
+        "histgreq",
+        "gausfilt",
+        "prewshap",
     )
     def __init__(self,root_dir,resize_size=[800,1024],split='trainval',use_difficult=False):
         self.root=root_dir
@@ -42,7 +28,8 @@ class VOCDataset(torch.utils.data.Dataset):
         self.imgset=split
 
         self._annopath = os.path.join(self.root, "Annotations", "%s.xml")
-        self._imgpath = os.path.join(self.root, "JPEGImages", "%s.jpg")
+        # self._imgpath = os.path.join(self.root, "JPEGImages", "%s.jpg")
+        self._imgpath = os.path.join(self.root, "JPEGImages", "%s.png")
         self._imgsetpath = os.path.join(self.root, "ImageSets", "Main", "%s.txt")
 
         with open(self._imgsetpath%self.imgset) as f:
@@ -166,7 +153,7 @@ class VOCDataset(torch.utils.data.Dataset):
 if __name__=="__main__":
     import cv2
     
-    dataset=VOCDataset("/home/data/voc2007_2012/VOCdevkit/VOC2012",split='trainval')
+    dataset=VOCDataset("D:\\Research\\My_tamper_detect_dataset_train_val_test\\voc_dataset_tmp",split='trainval')
     # for i in range(100):
     #     img,boxes,classes=dataset[i]
     #     img,boxes,classes=img.numpy().astype(np.uint8),boxes.numpy(),classes.numpy()

@@ -10,18 +10,20 @@ from dataloader.VOC_dataset import VOCDataset
 import math,time
 from torch.utils.tensorboard import SummaryWriter
 
-train_dataset=VOCDataset("/home/xht/voc2012/VOCdevkit/VOC2012",resize_size=[512,800],split='train')
-val_dataset=VOCDataset("/home/xht/voc2012/VOCdevkit/VOC2012",resize_size=[512,800],split='val')
+train_dataset=VOCDataset("D:\\Research\\My_tamper_detect_dataset_train_val_test\\voc_dataset_tmp",resize_size=[512,800],split='train')
+val_dataset=VOCDataset("D:\\Research\\My_tamper_detect_dataset_train_val_test\\voc_dataset_tmp",resize_size=[512,800],split='val')
 
 model=FCOSDetector(mode="training").cuda()
-model.load_state_dict(torch.load("./checkpoints/voc_512x800_loss2.0635.pth"))
+# model.load_state_dict(torch.load("./checkpoints/voc_512x800_loss2.0635.pth"))
 optimizer=torch.optim.Adam(model.parameters(),lr=1e-4)
 
-BATCH_SIZE=6
+BATCH_SIZE=1
 EPOCHS=30
 WARMPUP_STEPS_RATIO=0.12
-train_loader=torch.utils.data.DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=train_dataset.collate_fn)
-val_loader=torch.utils.data.DataLoader(val_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=val_dataset.collate_fn)
+# train_loader=torch.utils.data.DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=train_dataset.collate_fn)
+# val_loader=torch.utils.data.DataLoader(val_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=val_dataset.collate_fn)
+train_loader=torch.utils.data.DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=False,collate_fn=train_dataset.collate_fn)
+val_loader=torch.utils.data.DataLoader(val_dataset,batch_size=BATCH_SIZE,shuffle=False,collate_fn=val_dataset.collate_fn)
 steps_per_epoch=len(train_dataset)//BATCH_SIZE
 TOTAL_STEPS=steps_per_epoch*EPOCHS
 WARMPUP_STEPS=TOTAL_STEPS*WARMPUP_STEPS_RATIO
@@ -76,7 +78,7 @@ for epoch in range(EPOCHS):
 
         GLOBAL_STEPS+=1
     
-    torch.save(model.state_dict(),"./voc2012_512x800_epoch%d_loss%.4f.pth"%(epoch+1,loss.item()))
+    torch.save(model.state_dict(),"./checkPointsTmp/checkpoints/voc2012_512x800_epoch%d_loss%.4f.pth"%(epoch+1,loss.item()))
     
 
 
