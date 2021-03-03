@@ -78,7 +78,7 @@ for epoch in range(EPOCHS):
 
         GLOBAL_STEPS+=1
     
-    torch.save(model.state_dict(),"./checkPointsTmp/checkpoints/voc2012_512x800_epoch%d_loss%.4f.pth"%(epoch+1,loss.item()))
+    torch.save(model.state_dict(),"checkPoints//checkPointsTmp//voc2012_512x800_epoch%d_loss%.4f.pth"%(epoch+1,loss.item()))
     
 
 
