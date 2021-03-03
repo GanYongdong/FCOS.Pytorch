@@ -17,8 +17,8 @@ model=FCOSDetector(mode="training").cuda()
 # model.load_state_dict(torch.load("./checkpoints/voc_512x800_loss2.0635.pth"))
 optimizer=torch.optim.Adam(model.parameters(),lr=1e-4)
 
-BATCH_SIZE=1
-EPOCHS=30
+BATCH_SIZE=3
+EPOCHS=20
 WARMPUP_STEPS_RATIO=0.12
 # train_loader=torch.utils.data.DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=train_dataset.collate_fn)
 # val_loader=torch.utils.data.DataLoader(val_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=val_dataset.collate_fn)
@@ -29,7 +29,9 @@ TOTAL_STEPS=steps_per_epoch*EPOCHS
 WARMPUP_STEPS=TOTAL_STEPS*WARMPUP_STEPS_RATIO
 
 GLOBAL_STEPS=1
-LR_INIT=5e-5
+# LR_INIT=5e-5
+# LR_END=1e-6
+LR_INIT=1e-5
 LR_END=1e-6
 
 writer=SummaryWriter(log_dir="./logs")
