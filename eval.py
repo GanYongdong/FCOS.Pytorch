@@ -130,14 +130,15 @@ if __name__=="__main__":
     from dataloader.VOC_dataset import VOCDataset
     
 
-    eval_dataset=VOCDataset("/home/data/voc2007_2012/VOCdevkit/VOC2012",resize_size=[800,1024],split='val2007')
+    eval_dataset=VOCDataset("D:\\Research\\My_tamper_detect_dataset_train_val_test\\voc_dataset_tmp",resize_size=[800,1024],split='test')
     print("INFO===>eval dataset has %d imgs"%len(eval_dataset))
     eval_loader=torch.utils.data.DataLoader(eval_dataset,batch_size=1,shuffle=False,collate_fn=eval_dataset.collate_fn)
 
     model=FCOSDetector(mode="inference")
     # model=torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
     # print("INFO===>success convert BN to SyncBN")
-    model.load_state_dict(torch.load("./logs/voc20172012_multigpu_800x1024_epoch27_loss0.5987.pth",map_location=torch.device('cpu')))
+    ## model.load_state_dict(torch.load("./logs/voc20172012_multigpu_800x1024_epoch27_loss0.5987.pth",map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load("./checkPoints/checkPointsTmp/voc2012_512x800_epoch20_loss0.7801.pth",map_location=torch.device('cpu')))
     # model=convertSyncBNtoBN(model)
     # print("INFO===>success convert SyncBN to BN")
     model=model.cuda().eval()

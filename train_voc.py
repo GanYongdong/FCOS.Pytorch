@@ -18,7 +18,7 @@ model=FCOSDetector(mode="training").cuda()
 optimizer=torch.optim.Adam(model.parameters(),lr=1e-4)
 
 BATCH_SIZE=3
-EPOCHS=20
+EPOCHS=25
 WARMPUP_STEPS_RATIO=0.12
 # train_loader=torch.utils.data.DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=train_dataset.collate_fn)
 # val_loader=torch.utils.data.DataLoader(val_dataset,batch_size=BATCH_SIZE,shuffle=True,collate_fn=val_dataset.collate_fn)

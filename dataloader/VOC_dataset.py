@@ -39,7 +39,7 @@ class VOCDataset(torch.utils.data.Dataset):
         self.resize_size=resize_size
         self.mean=[0.485, 0.456, 0.406]
         self.std=[0.229, 0.224, 0.225]
-        print("INFO=====>voc dataset init finished  ! !")
+        print("INFO=====>voc dataset init finished ! !  pic num:", len(self.img_ids))
 
     def __len__(self):
         return len(self.img_ids)
