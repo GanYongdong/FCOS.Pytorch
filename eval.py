@@ -138,7 +138,7 @@ if __name__=="__main__":
     # model=torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
     # print("INFO===>success convert BN to SyncBN")
     ## model.load_state_dict(torch.load("./logs/voc20172012_multigpu_800x1024_epoch27_loss0.5987.pth",map_location=torch.device('cpu')))
-    model.load_state_dict(torch.load("./checkPoints/checkPointsTmp/voc2012_512x800_epoch20_loss0.7801.pth",map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load("./checkPoints/checkPointsTmp/voc2012_512x800_epoch25_loss0.9422.pth",map_location=torch.device('cpu')))
     # model=convertSyncBNtoBN(model)
     # print("INFO===>success convert SyncBN to BN")
     model=model.cuda().eval()

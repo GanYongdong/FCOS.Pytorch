@@ -1,4 +1,4 @@
 *.pth
 *.pyc
-*/events.out.tfevents.*
+events.out.tfevents.*
 .vscode
